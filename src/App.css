@@ -1,38 +1,192 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: rgb(193, 62, 62);
+    background: linear-gradient(139deg, rgb(179 146 64) 0%, rgb(14 91 22) 100%);
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+#todos {
+  color: white;
+  padding: 20px;
+  width: 600px;
+  margin: 0 auto;
+  height: auto;
+}
+
+#todos>.heading {
+  margin-bottom: 30px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#todos>.heading>h1 {
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 2.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#todos>.heading>h1::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 0;
+  width: 10%;
+  height: 2px;
+  background-color: white;
+  transition: .5s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#todos>.heading>h1:hover::before {
+  width: 80%;
+}
+
+#todos>.todo-input-container {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+#todos>.todo-input-container>.todo_input {
+  width: 100%;
+  height: 40px;
+  padding: 0 0 0 10px;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+}
+
+#todos>.todo-input-container>.add-item {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgb(236, 44, 44);
+  line-height: 40px;
   color: white;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+#todos>.todo-input-container>.add-item:nth-child(2) {
+  right: -1px;
+  background-color: rgb(233, 153, 61);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+#todos>.todo-list-container {
+  list-style: none;
+  margin: 10px 0 0;
+}
+
+#todos>.todo-list-container .todo-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.eachitems{
+  background: #fff;
+  padding: 1.2rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.7rem;
+  /* margin-left: 1rem; */
+  width: 100%;
+  word-break: break-word;
+  background: rgb(58, 148, 91);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+
+}
+.itemsbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+}
+.btn {
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+.btn:hover {
+  text-decoration: none;
+}
+
+.effect04 {
+  --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
+  display: var(--uismLinkDisplay);
+  color: #000;
+  /* outline: solid 2px #000; */
+  position: relative;
+  transition-duration: 0.4s;
+  overflow: hidden;
+}
+
+.effect04::before,
+.effect04 span {
+  margin: 0 auto;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  transition-duration: 0.4s;
+}
+
+.effect04:hover {
+  background-color: rgb(85, 41, 220);
+}
+
+.effect04:hover span {
+  -webkit-transform: translateY(-400%) scale(-0.1, 20);
+  transform: translateY(-400%) scale(-0.1, 20);
+}
+
+.effect04::before {
+  content: attr(data-sm-link-text);
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -webkit-transform: translateY(500%) scale(-0.1, 20);
+  transform: translateY(500%) scale(-0.1, 20);
+}
+
+.effect04:hover::before {
+  letter-spacing: 0.05em;
+  -webkit-transform: translateY(0) scale(1, 1);
+  transform: translateY(0) scale(1, 1);
+}
+
+@media screen and (max-width: 600px) {
+  #todos {
+      width: 100%;
   }
 }
+
+
+
