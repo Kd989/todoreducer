@@ -1,6 +1,7 @@
 import React from 'react'
 import { ACTIONS } from './Todo'
 const Todolist = ({todo,dispatch}) => {
+    // console.log(todo);
    
     return (
         <div>

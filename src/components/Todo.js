@@ -12,7 +12,9 @@ export const ACTIONS = {
 const reducer = (todos, action) => {
     switch (action.type) {
         case ACTIONS.ADD_TODO:
+            
             return [
+                
 
                 ...todos, newTodo(action.payload.inputData)
             ]
@@ -30,8 +32,8 @@ const reducer = (todos, action) => {
             return todos.filter(todo => todo.id !== action.payload.id)
 
 
-            case ACTIONS.Del_all:
-                return []
+        case ACTIONS.Del_all:
+            return []
 
         default:
             return todos
@@ -52,10 +54,17 @@ const Todo = () => {
     // console.log(todos);
     const [inputData, setInputData] = useState("")
 
-    const handleSubit = (e) => {
-        e.preventDefault()
-        dispatch({ type: ACTIONS.ADD_TODO, payload: { inputData: inputData } })
-        setInputData("")
+    const handleSubit = () => {
+        if(!inputData){
+
+        }else{
+            dispatch({ type: ACTIONS.ADD_TODO, payload: { inputData: inputData } })
+            setInputData("")
+        }
+
+        
+
+
     }
     return (
         <>
@@ -75,7 +84,7 @@ const Todo = () => {
 
                 </div>
                 <div className='itemsbtn'>
-                    <button className='btn effect04' data-sm-link-text="Remove all" onClick={()=>dispatch({type:ACTIONS.Del_all})}>
+                    <button className='btn effect04' data-sm-link-text="Removed all" onClick={() => dispatch({ type: ACTIONS.Del_all })}>
                         <span>check list</span>
                     </button>
 
@@ -86,3 +95,4 @@ const Todo = () => {
 }
 
 export default Todo
+// todoreducer
