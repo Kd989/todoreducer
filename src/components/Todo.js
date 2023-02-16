@@ -1,33 +1,61 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import Header from './Header';
+import Todolist from './Todolist';
+
+export const ACTIONS = {
+    ADD_TODO: "ADD",
+    TOGGLE_TODO: 'TOGGLE-TODO',
+    DEL_TODO: "del",
+    Del_all: "DEL"
+}
+
+const reducer = (todos, action) => {
+    switch (action.type) {
+        case ACTIONS.ADD_TODO:
+            return [
+
+                ...todos, newTodo(action.payload.inputData)
+            ]
+        case ACTIONS.TOGGLE_TODO:
+            return todos.map(todo => {
+                if (todo.id === action.payload.id) {
+                    return {
+                        ...todo, complete: !todo.complete
+                    }
+
+                }
+                return todo
+            })
+        case ACTIONS.DEL_TODO:
+            return todos.filter(todo => todo.id !== action.payload.id)
+
+
+            case ACTIONS.Del_all:
+                return []
+
+        default:
+            return todos
+
+
+    }
+}
+const newTodo = (inputData) => {
+    return {
+        id: Date.now(),
+        inputData: inputData,
+        complete: false
+    }
+}
+
 const Todo = () => {
+    const [todos, dispatch] = useReducer(reducer, [])
+    // console.log(todos);
     const [inputData, setInputData] = useState("")
-    const [items, setItems] = useState([])
-    const addItem = () => {
 
-        if (!inputData) {
-
-        } else {
-            setInputData("")
-            setItems([...items, inputData]);
-        }
-
-
-
-    }
-
-    const deleitem = (id) => {
-        const updateItem = items.filter((e, i) => {
-            return(
-                i !== id
-            )
-        })
-        setItems(updateItem)
-    }
-
-    // remove all 
-    const removeAll =() =>{
-        setItems([])
+    const handleSubit = (e) => {
+        e.preventDefault()
+        dispatch({ type: ACTIONS.ADD_TODO, payload: { inputData: inputData } })
+        setInputData("")
     }
     return (
         <>
@@ -35,24 +63,19 @@ const Todo = () => {
                 <Header />
                 <div className="todo-input-container">
                     <input className="todo_input" type="text" placeholder="Add Task..." value={inputData} onChange={(e) => setInputData(e.target.value)} />
-                    <i className="fas fa-plus add-item" onClick={addItem}></i>
-                    {/* <i className="fas fa-trash-alt add-item deleteBtn" ></i> */}
+                    <i className="fas fa-plus add-item" onClick={handleSubit}></i>
+
                 </div>
                 <div className='showitems'>
                     {
-                        items.map((e, i) => {
-                            return (
-                                <div className='eachitems' key={i}>
-                                    <h3>{e}</h3>
-                                    <i className="fa-solid fa-trash-can" onClick={() => deleitem(i)}></i>
-                                </div>
-                            )
+                        todos.map(todo => {
+                            return <Todolist key={todo.id} todo={todo} dispatch={dispatch} />
                         })
                     }
 
                 </div>
                 <div className='itemsbtn'>
-                    <button className='btn effect04' data-sm-link-text="Remove all" onClick={removeAll}>
+                    <button className='btn effect04' data-sm-link-text="Remove all" onClick={()=>dispatch({type:ACTIONS.Del_all})}>
                         <span>check list</span>
                     </button>
 
