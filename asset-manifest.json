@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/todoreducer/static/css/main.bcac26ea.css",
+    "main.js": "/todoreducer/static/js/main.abfd9803.js",
+    "index.html": "/todoreducer/index.html",
+    "main.bcac26ea.css.map": "/todoreducer/static/css/main.bcac26ea.css.map",
+    "main.abfd9803.js.map": "/todoreducer/static/js/main.abfd9803.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bcac26ea.css",
+    "static/js/main.abfd9803.js"
+  ]
+}
